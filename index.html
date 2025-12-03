@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Ti, Mi Amor 💝</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Pacifico&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --color-primary: #ff6b9d;
+            --color-secondary: #c44569;
+            --color-accent: #ffa502;
+            --color-dark: #2d3436;
+            --color-light: #ffffff;
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Partículas flotantes de corazones */
+        .heart-particle {
+            position: fixed;
+            font-size: 20px;
+            opacity: 0;
+            animation: float-heart 6s infinite;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        @keyframes float-heart {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .container {
+            width: 100%;
+            max-width: 450px;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Pantalla de introducción */
+        #intro-screen {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 50px 30px;
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 1s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .intro-title {
+            font-family: 'Pacifico', cursive;
+            font-size: 42px;
+            color: var(--color-primary);
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .intro-subtitle {
+            font-size: 18px;
+            color: var(--color-dark);
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .heart-icon {
+            font-size: 60px;
+            animation: heartbeat 1.5s infinite;
+            display: inline-block;
+            margin: 20px 0;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            25% { transform: scale(1.1); }
+            50% { transform: scale(1); }
+            75% { transform: scale(1.15); }
+        }
+
+        .intro-button {
+            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            color: white;
+            border: none;
+            padding: 18px 45px;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(255, 107, 157, 0.4);
+            transition: all 0.3s ease;
+            font-family: 'Quicksand', sans-serif;
+        }
+
+        .intro-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 107, 157, 0.6);
+        }
+
+        .screen {
+            display: none;
+            animation: slideIn 0.5s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Menú principal */
+        #menu {
+            display: none;
+        }
+
+        .menu-header {
+            text-align: center;
+            margin-bottom: 30px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 25px;
+            border-radius: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .menu-title {
+            font-family: 'Pacifico', cursive;
+            font-size: 32px;
+            color: var(--color-primary);
+            margin-bottom: 10px;
+        }
+
+        .menu-subtitle {
+            font-size: 14px;
+            color: var(--color-dark);
+            opacity: 0.8;
+        }
+
+        .button {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.85));
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 107, 157, 0.3);
+            color: var(--color-dark);
+            padding: 20px;
+            border-radius: 20px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: 15px;
+            width: 100%;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(255, 107, 157, 0.3);
+            border-color: var(--color-primary);
+            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            color: white;
+        }
+
+        .button-icon {
+            font-size: 24px;
+        }
+
+        /* Tarjetas de contenido */
+        .content-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 35px;
+            border-radius: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 0.6s ease;
+        }
+
+        .content-card h2 {
+            font-family: 'Pacifico', cursive;
+            color: var(--color-primary);
+            font-size: 28px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .content-card p {
+            color: var(--color-dark);
+            line-height: 1.8;
+            text-align: justify;
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+
+        /* Racha */
+        .racha-display {
+            text-align: center;
+            padding: 30px;
+            background: linear-gradient(135deg, var(--color-accent), #ff6348);
+            border-radius: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(255, 165, 2, 0.3);
+        }
+
+        .racha-number {
+            font-size: 72px;
+            font-weight: 700;
+            color: white;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .flame-icon {
+            font-size: 80px;
+            animation: flicker 1.5s infinite;
+        }
+
+        @keyframes flicker {
+            0%, 100% { transform: scale(1) rotate(-5deg); }
+            50% { transform: scale(1.1) rotate(5deg); }
+        }
+
+        .racha-text {
+            font-size: 20px;
+            color: white;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+
+        .racha-description {
+            text-align: center;
+            font-size: 15px;
+            color: var(--color-dark);
+            margin-top: 20px;
+            line-height: 1.6;
+        }
+
+        /* Cartas */
+        .carta-item {
+            background: linear-gradient(135deg, rgba(255, 107, 157, 0.1), rgba(196, 69, 105, 0.1));
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 15px;
+            border-left: 4px solid var(--color-primary);
+            transition: all 0.3s ease;
+        }
+
+        .carta-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(255, 107, 157, 0.2);
+        }
+
+        .carta-item h3 {
+            color: var(--color-primary);
+            font-size: 18px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .carta-item p {
+            color: var(--color-dark);
+            font-size: 15px;
+            text-align: left;
+            line-height: 1.7;
+        }
+
+        /* Fotos y videos */
+        .media-grid {
+            display: grid;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .media-item {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            color: var(--color-dark);
+            transition: all 0.3s ease;
+        }
+
+        .media-item:hover {
+            transform: scale(1.02);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .media-item img, .media-item video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Canción */
+        .song-card {
+            text-align: center;
+        }
+
+        .song-card h2 {
+            margin-bottom: 25px;
+        }
+
+        .spotify-container {
+            margin: 20px 0;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Botón volver */
+        .volver-button {
+            background: linear-gradient(135deg, var(--color-secondary), var(--color-primary));
+            color: white;
+            border: none;
+            padding: 16px;
+            font-weight: 600;
+        }
+
+        .volver-button:hover {
+            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            transform: translateY(-3px);
+        }
+
+        /* Mensaje especial en "Cómo nos conocimos" */
+        .special-message {
+            background: linear-gradient(135deg, rgba(255, 107, 157, 0.15), rgba(196, 69, 105, 0.15));
+            padding: 25px;
+            border-radius: 15px;
+            margin-top: 20px;
+            border: 2px dashed var(--color-primary);
+            text-align: center;
+        }
+
+        .special-message h3 {
+            color: var(--color-primary);
+            font-family: 'Pacifico', cursive;
+            font-size: 22px;
+            margin-bottom: 15px;
+        }
+
+        .special-message p {
+            text-align: center;
+            font-size: 15px;
+            font-weight: 500;
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            .intro-title {
+                font-size: 32px;
+            }
+            .racha-number {
+                font-size: 56px;
+            }
+            .flame-icon {
+                font-size: 60px;
+            }
+        }
+    </style>
+</head>
+<body onload="initApp()">
+
+    <div class="container">
+        <!-- Pantalla de introducción -->
+        <div id="intro-screen">
+            <div class="intro-title">Para Ti 💝</div>
+            <div class="heart-icon">❤️</div>
+            <div class="intro-subtitle">
+                Hice esto para ti porque hay cosas que necesito que sepas...<br>
+                Cosas que siento y que tal vez no te dije como debía.
+            </div>
+            <button class="intro-button" onclick="startExperience()">Abrir mi corazón</button>
+        </div>
+
+        <!-- Menú principal -->
+        <div id="menu" class="screen">
+            <div class="menu-header">
+                <div class="menu-title">Nuestro Espacio</div>
+                <div class="menu-subtitle">Cada botón guarda algo especial para ti ✨</div>
+            </div>
+            <button class="button" onclick="showScreen('como_conocimos')">
+                <span class="button-icon">💭</span> Lo que siento por ti
+            </button>
+            <button class="button" onclick="showScreen('racha')">
+                <span class="button-icon">🔥</span> Nuestros días juntos
+            </button>
+            <button class="button" onclick="showScreen('cartas')">
+                <span class="button-icon">💌</span> Cartas desde el corazón
+            </button>
+            <button class="button" onclick="showScreen('fotos_videos')">
+                <span class="button-icon">📸</span> Nuestros momentos
+            </button>
+            <button class="button" onclick="showScreen('cancion')">
+                <span class="button-icon">🎵</span> Nuestra canción
+            </button>
+        </div>
+
+        <!-- Cómo nos conocimos -->
+        <div id="como_conocimos" class="screen">
+            <div class="content-card">
+                <h2>Lo que eres para mí</h2>
+                <p>Hay tantas cosas que quiero decirte y que tal vez no supe expresar cuando debía. Tú eres esa persona sencilla que hace que todo sea diferente. Tu ternura no tiene que gritar para notarse, simplemente está ahí, en cada pequeño gesto, en cada mirada.</p>
+                <p>Tu voz, suave y cálida, tiene el poder de calmar cualquier tormenta. Y tu forma de ver el mundo... tiene algo que me hace querer ser mejor persona. Siento que dentro de ti hay una autenticidad que es casi imposible de encontrar hoy en día. No intentas ser quien no eres, y eso, créeme, vale más que cualquier otra cosa.</p>
+                <p>Si pudiera volver atrás, haría todo diferente. Pero lo que no cambiaría, ni por un segundo, es haberte conocido. Porque incluso en los errores, tú has sido lo mejor que me ha pasado.</p>
+                
+                <div class="special-message">
+                    <h3>Un mensaje especial</h3>
+                    <p><strong>Sé que la cagué.</strong> Lo sé y no tengo excusa. Pero también sé que lo nuestro fue real, que lo que sentíamos era verdadero. Y si me das una oportunidad, te prometo que no la desperdiciaré. Porque perderte fue darme cuenta de lo mucho que significas para mí. 💕</p>
+                </div>
+            </div>
+            <button class="button volver-button" onclick="showScreen('menu')">← Volver</button>
+        </div>
+
+        <!-- Racha -->
+        <div id="racha" class="screen">
+            <div class="content-card">
+                <div class="racha-display">
+                    <div class="racha-number">
+                        <span class="flame-icon">🔥</span>
+                        <span id="racha-dias">0</span>
+                    </div>
+                    <div class="racha-text">días contigo</div>
+                </div>
+                <div class="racha-description">
+                    <strong>Cada uno de estos días cuenta.</strong><br>
+                    Cada risa, cada mensaje, cada momento compartido. Esta racha es el símbolo de lo constante y hermoso que ha sido tenerte en mi vida. Y quiero que siga creciendo, día tras día, contigo a mi lado.
+                </div>
+            </div>
+            <button class="button volver-button" onclick="showScreen('menu')">← Volver</button>
+        </div>
+
+        <!-- Cartas -->
+        <div id="cartas" class="screen">
+            <div class="content-card">
+                <h2>💌 Cartas para Ti</h2>
+                <p style="text-align: center; margin-bottom: 25px; font-size: 14px; opacity: 0.8;">
+                    Escribí una carta para cada día. Cada una te recuerda lo especial que eres.
+                </p>
+                <div id="cartas-container"></div>
+            </div>
+            <button class="button volver-button" onclick="showScreen('menu')">← Volver</button>
+        </div>
+
+        <!-- Fotos y videos -->
+        <div id="fotos_videos" class="screen">
+            <div class="content-card">
+                <h2>📸 Nuestros Recuerdos</h2>
+                <p style="text-align: center; font-size: 14px; opacity: 0.7; margin-bottom: 20px;">
+                    Cada foto guarda un pedacito de nuestra historia juntos
+                </p>
+                <div class="media-grid">
+                    <div class="media-item"><small><img src="foto1.jpg" alt=""></small></div>
+                    <div class="media-item"><small><img src="foto2.jpg" alt=""></small></div>
+                    <div class="media-item"><small><img src="foto3.jpg" alt=""></small></div>
+                    <div class="media-item"><small><img src="foto4.jpg" alt=""></small></div>
+                    <div class="media-item"><small><img src="foto5.jpg" alt=""></small></div>
+                    <div class="media-item"><small><img src="foto6.jpg" alt=""></small></div>
+                    <div class="media-item"><small><img src="foto7.jpg" alt=""></small></div>
+                    <div class="media-item"><small><img src="foto8.jpg" alt=""></small></div>
+                    <div class="media-item"><small><img src="foto9.jpg" alt=""></small></div>
+                    <div class="media-item"><small><img src="foto10.jpg" alt=""></small></div>
+                    <div class="media-item"><small><img src="foto11.jpg" alt=""></small></div>
+                    <div class="media-item"><small><img src="foto12.jpg" alt=""></small></div>
+                    <div class="media-item"><small><img src="foto13.jpg" alt=""></small></div>
+                    <div class="media-item"><small><img src="foto14.jpg" alt=""></small></div>
+                    <div class="media-item"><video src="video1.mp4" controls></video></div>
+                </div>
+            </div>
+            <button class="button volver-button" onclick="showScreen('menu')">← Volver</button>
+        </div>
+
+        <!-- Canción -->
+        <div id="cancion" class="screen">
+            <div class="content-card song-card">
+                <h2>🎵 Para Ti</h2>
+                
+            <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/track/0NlGoUyOJSuSHmngoibVAs?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>          
+                
+            </div>
+            <button class="button volver-button" onclick="showScreen('menu')">← Volver</button>
+        </div>
+
+    </div>
+
+    <script>
+        // CONFIGURA LA FECHA DE INICIO - El día que comenzó tu relación o que quieras contar
+        const START_DATE = new Date('2025-10-08T00:00:00');
+
+        // CARTAS DIARIAS - Se desbloqueará una nueva cada día
+        const CARDS = [
+            "Sé lo fuerte que eres, incluso cuando tú lo dudas. No hay examen, mudanza o miedo que pueda más que todo lo que llevas dentro. Y aunque me digas que exagero, en el fondo sabes que es verdad. Eres más valiente de lo que crees.",
+            "Hoy solo quiero recordarte que puedes con todo lo que se te ponga enfrente. Ese examen, esa decisión difícil, ese miedo... todo. Yo confío en ti más de lo que imaginas. Y siempre voy a estar aquí, recordándotelo.",
+            "Eres pura magia, aunque a veces no lo veas. Tu forma de ser, de hablar, de sonreír... todo en ti tiene algo especial que hace que el mundo sea un lugar mejor. No lo olvides nunca.",
+            "Las cosas más lindas de la vida son las que compartimos juntos. Cada risa, cada abrazo, cada momento a tu lado es un regalo que nunca voy a dar por sentado. Gracias por ser mi persona favorita.",
+            "Quiero que sepas que cada día contigo es un regalo que valoro infinitamente. Eres mi lugar seguro, mi calma en medio del caos, mi hogar. Y no importa lo que pase, eso nunca va a cambiar.",
+            "No importa lo difícil que sea el camino, siempre voy a estar aquí para ti. En las buenas y en las malas, en los días grises y en los de sol. Porque tú vales cada esfuerzo, cada gesto, cada palabra.",
+            "Tu sonrisa ilumina mis días más oscuros. Nunca dejes de ser tan auténtica, tan tú. El mundo necesita más personas como tú, y yo necesito tenerte cerca. Te quiero más de lo que las palabras pueden expresar.",
+            "Mi corazón salta de alegría cada vez que veo tu nombre en mi teléfono. Eres la primera persona en la que pienso al despertar y la última antes de dormir. No sé qué hice para tenerte, pero no pienso dejarte ir.",
+            "Un día sin ti es un día que se siente incompleto. Gracias por llenar mi vida de luz, de calma, de amor. Gracias por ser exactamente quien eres. Te amo.",
+            "Sé que cometí errores. Sé que no siempre fui lo que merecías. Pero también sé que esto es real, que lo nuestro vale la pena. Y si me das una oportunidad, te prometo demostrártelo cada día.",
+            "Hay días en los que solo quiero abrazarte y decirte lo importante que eres para mí. Eres mi refugio, mi alegría, mi todo. Y aunque a veces no lo demuestre bien, quiero que lo sepas siempre.",
+            "Te extraño en los momentos más random. Cuando veo algo que te haría reír, cuando escucho una canción que te gusta, cuando simplemente estoy ahí y siento que falta algo... que faltas tú.",
+            "No necesito grandes cosas para ser feliz. Solo necesito saber que estás bien, que sonríes, que eres feliz. Porque tu felicidad es mi felicidad, y tu paz es mi paz.",
+            "Gracias por enseñarme lo que es el amor de verdad. No el de las películas, sino el real, el que se construye día a día, el que se demuestra en los pequeños gestos. Ese amor que solo tú sabes dar.",
+            "Si pudiera regalarte algo, sería un espejo para que vieras lo increíble que eres. Porque a veces siento que no te das cuenta de todo lo que vales, de todo lo que eres capaz de hacer, de lo especial que eres para mí."
+        ];
+
+        let heartInterval;
+
+        function createFloatingHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart-particle';
+            heart.textContent = ['❤️', '💕', '💖', '💗', '💝'][Math.floor(Math.random() * 5)];
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.animationDelay = Math.random() * 3 + 's';
+            heart.style.animationDuration = (Math.random() * 3 + 4) + 's';
+            document.body.appendChild(heart);
+            
+            setTimeout(() => heart.remove(), 7000);
+        }
+
+        function startExperience() {
+            document.getElementById('intro-screen').style.display = 'none';
+            showScreen('menu');
+            
+            // Crear corazones flotantes
+            heartInterval = setInterval(createFloatingHeart, 800);
+        }
+
+        function showScreen(screenId) {
+            document.querySelectorAll('.screen').forEach(screen => {
+                screen.style.display = 'none';
+            });
+            
+            const targetScreen = document.getElementById(screenId);
+            targetScreen.style.display = 'block';
+            
+            if (screenId === 'racha') {
+                updateStreak();
+            } else if (screenId === 'cartas') {
+                updateLetters();
+            }
+        }
+
+        function updateStreak() {
+    const now = new Date();
+    // ESTA LÍNEA ES LA CLAVE: CALCULA LA DIFERENCIA DE DÍAS (se actualiza cada 24h)
+    const diffTime = Math.abs(now.getTime() - START_DATE.getTime());
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
+    
+    // Animación de contador
+    let currentCount = 0;
+    const increment = Math.ceil(diffDays / 30);
+    const counter = setInterval(() => {
+        currentCount += increment;
+        if (currentCount >= diffDays) {
+            currentCount = diffDays;
+            clearInterval(counter);
+        }
+        document.getElementById('racha-dias').textContent = currentCount;
+    }, 50);
+}
+
+        function updateLetters() {
+            const now = new Date();
+            // Normalizar ambas fechas a medianoche para comparación precisa
+            const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+            const startDay = new Date(START_DATE.getFullYear(), START_DATE.getMonth(), START_DATE.getDate());
+            
+            // Calcular días transcurridos desde el inicio
+            const diffTime = today.getTime() - startDay.getTime();
+            const daysElapsed = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+
+            const container = document.getElementById('cartas-container');
+            container.innerHTML = '';
+
+            // Solo mostrar cartas para los días que han pasado (empezando desde día 0)
+            const cardsToShow = daysElapsed >= 0 ? CARDS.slice(0, Math.min(daysElapsed + 1, CARDS.length)) : [];
+
+            if (daysElapsed < 0) {
+                container.innerHTML = '<p style="text-align: center; opacity: 0.7; padding: 20px;">¡La primera carta se desbloqueará el día que comencemos! 💌</p>';
+                return;
+            }
+
+            if (cardsToShow.length === 0) {
+                container.innerHTML = '<p style="text-align: center; opacity: 0.7; padding: 20px;">¡Tu primera carta ya está disponible! 💌</p>';
+                return;
+            }
+
+            // Mostrar las cartas desbloqueadas
+            cardsToShow.forEach((text, index) => {
+                const cartaDiv = document.createElement('div');
+                cartaDiv.classList.add('carta-item');
+                cartaDiv.style.animationDelay = (index * 0.1) + 's';
+                
+                const title = document.createElement('h3');
+                const dayNumber = index + 1;
+                title.innerHTML = `💌 Día ${dayNumber}`;
+                
+                const content = document.createElement('p');
+                content.textContent = text;
+                
+                cartaDiv.appendChild(title);
+                cartaDiv.appendChild(content);
+                container.appendChild(cartaDiv);
+            });
+
+            // Mostrar mensaje sobre la próxima carta o completado
+            if (daysElapsed + 1 < CARDS.length) {
+                const upcomingMessage = document.createElement('p');
+                upcomingMessage.style.cssText = 'text-align: center; margin-top: 25px; font-size: 13px; opacity: 0.6; padding: 15px; background: rgba(255,107,157,0.1); border-radius: 10px;';
+                const nextDay = daysElapsed + 2;
+                upcomingMessage.textContent = `💝 La carta del Día ${nextDay} se desbloqueará mañana`;
+                container.appendChild(upcomingMessage);
+            } else if (daysElapsed + 1 >= CARDS.length) {
+                const completedMessage = document.createElement('p');
+                completedMessage.style.cssText = 'text-align: center; margin-top: 25px; font-size: 13px; opacity: 0.6; padding: 15px; background: rgba(255,107,157,0.1); border-radius: 10px;';
+                completedMessage.textContent = `✨ Has leído todas las cartas. Pero mi amor por ti sigue creciendo cada día ❤️`;
+                container.appendChild(completedMessage);
+            }
+        }
+
+        function initApp() {
+            document.getElementById('intro-screen').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
